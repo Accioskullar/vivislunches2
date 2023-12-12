@@ -7,7 +7,7 @@ import React from "react";
 
 // Function to fetch data from the server
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/products", {
+  const res = await fetch(`${process.env.API_URL}/api/products`, {
     cache: "no-store",
   });
 
@@ -46,7 +46,7 @@ const Featured = async () => {
               <p className="p-4 2xl:p-8">{item.desc}</p>
               <span className="text-xl font-bold">${item.price}</span>
               {/* Link to product details page (replace with your actual routing logic) */}
-              <Link href={`http://localhost:3000/product/${item.id}`} className="bg-red-500 text-white p-2 rounded-md">
+              <Link href={`${process.env.API_URL}/product/${item.id}`} className="bg-red-500 text-white p-2 rounded-md">
                 Add to Cart
               </Link>
             </div>

@@ -25,7 +25,7 @@ const DeleteButton = ({ id }: { id: string }) => {
   const handleDelete = async () => {
     try {
       // Make a DELETE request to delete the product
-      const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+      const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {
         method: "DELETE",
       });
 
