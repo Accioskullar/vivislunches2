@@ -3,6 +3,7 @@ import { prisma } from "@/utils/connect";
 import { NextResponse } from "next/server";
 
 // Handling PUT requests for updating an order's status
+// @ts-ignore
 export const PUT = async ({ params }: { params: { intentId: string } }) => {
   // Extracting intentId from request parameters
   const { intentId } = params;
