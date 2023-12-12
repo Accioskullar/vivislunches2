@@ -11,7 +11,8 @@ const SuccessPage = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        await fetch(`${process.env.API_URL}/api/confirm/${payment_intent}`, {
+        // await fetch(`${process.env.API_URL}/api/confirm/${payment_intent}`, {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/confirm/${payment_intent}`, {
           method: "PUT",
         });
         setTimeout(() => {

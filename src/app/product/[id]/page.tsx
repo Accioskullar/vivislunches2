@@ -7,7 +7,8 @@ import React from "react";
 
 // Define a function to fetch data for a single product
 const getData = async (id: string) => {
-  const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {
+  // const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`, {
     cache: "no-store",
   });
 

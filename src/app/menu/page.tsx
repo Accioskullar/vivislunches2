@@ -5,7 +5,8 @@ import React from "react";
 
 // Function to fetch menu data
 const getData = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/categories`, {
+  // const res = await fetch(`${process.env.API_URL}/api/categories`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`, {
     cache: "no-store",
   });
   // const res = await fetch("http://localhost:3000/api/categories", {

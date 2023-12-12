@@ -20,7 +20,8 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     const makeRequest = async () => {
       try {
         const res = await fetch(
-          `${process.env.API_URL}api/create-intent/${id}`,
+          // `${process.env.API_URL}api/create-intent/${id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}api/create-intent/${id}`,
           {
             method: "POST",
           }
