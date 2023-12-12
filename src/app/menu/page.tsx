@@ -19,8 +19,8 @@ const getData = async () => {
 // Define the MenuPage component
 const MenuPage = async () => {
   // Fetch menu data
-  // const menu: MenuType = await getData();
-  const menu: MenuType = [];
+  const menu: MenuType = await getData();
+ 
 
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">

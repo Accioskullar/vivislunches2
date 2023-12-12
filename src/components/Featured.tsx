@@ -21,8 +21,8 @@ const getData = async () => {
 // Featured component
 const Featured = async () => {
   // Fetch featured products data
-  // const featuredProducts: ProductType[] = await getData();
-  const featuredProducts: ProductType[] = []; 
+  const featuredProducts: ProductType[] = await getData();
+ 
 
   return (
     <div className="w-screen overflow-x-scroll text-red-500">
