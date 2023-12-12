@@ -1,10 +1,11 @@
-"use client";
 
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
 
+// Define an array of navigation links
 const links = [
   { id: 1, title: "Homepage", url: "/" },
   { id: 2, title: "Menu", url: "/menu" },
@@ -12,33 +13,18 @@ const links = [
   { id: 4, title: "Contact", url: "/" },
 ];
 
+// Menu component
 const Menu = () => {
+  // State to manage the open/closed state of the menu
   const [open, setOpen] = useState(false);
 
-  // TEMPORARY
+  // Dummy user variable (replace with actual user authentication)
   const user = false;
+
+  // Render the Menu component
   return (
     <div>
-      {/* LONG WAY */}
-      {/* {!open ? (
-        <Image
-          src="/open.png"
-          alt=""
-          width={20}
-          height={20}
-          onClick={() => setOpen(true)}
-        />
-      ) : (
-        <Image
-          src="/close.png"
-          alt=""
-          width={20}
-          height={20}
-          onClick={() => setOpen(false)}
-        />
-      )} */}
-      
-      {/* SHORTCUT */}
+      {/* Hamburger icon for opening/closing the menu */}
       <Image
         src={open ? "/close.png" : "/open.png"}
         alt=""
@@ -47,32 +33,20 @@ const Menu = () => {
         onClick={() => setOpen(!open)}
         className="cursor-pointer"
       />
+      {/* Dropdown menu */}
       {open && (
         <div className="bg-red-500 text-white absolute left-0 top-24 w-full h-[calc(100vh-6rem)] flex flex-col gap-8 items-center justify-center text-3xl z-10">
+          {/* Render navigation links */}
           {links.map((item) => (
             <Link href={item.url} key={item.id} onClick={() => setOpen(false)}>
               {item.title}
             </Link>
           ))}
-
-          {/* LONG WAY */}
-          {/* {!user ? (
-            <Link href="/login" onClick={() => setOpen(false)}>
-              Login
-            </Link>
-          ) : (
-            <Link href="/orders" onClick={() => setOpen(false)}>
-              Orders
-            </Link>
-          )} */}
-
-          {/* SHORTCUT */}
-          <Link
-            href={user ? "/orders" : "login"}
-            onClick={() => setOpen(false)}
-          >
+          {/* Render "Orders" or "Login" link based on user authentication */}
+          <Link href={user ? "/orders" : "login"} onClick={() => setOpen(false)}>
             {user ? "Orders" : "Login"}
           </Link>
+          {/* Render the cart icon with a link to the cart page */}
           <Link href="/cart" onClick={() => setOpen(false)}>
             <CartIcon />
           </Link>
@@ -82,4 +56,5 @@ const Menu = () => {
   );
 };
 
+// Export the Menu component
 export default Menu;

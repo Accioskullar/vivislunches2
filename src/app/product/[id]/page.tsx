@@ -1,9 +1,11 @@
+
 import DeleteButton from "@/components/DeleteButton";
 import Price from "@/components/Price";
 import { ProductType } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
+// Define a function to fetch data for a single product
 const getData = async (id: string) => {
   const res = await fetch(`http://localhost:3000/api/products/${id}`, {
     cache: "no-store",
@@ -16,7 +18,9 @@ const getData = async (id: string) => {
   return res.json();
 };
 
+// Define the SingleProductPage component
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
+  // Fetch data for the single product using its ID
   const singleProduct: ProductType = await getData(params.id);
 
   return (
@@ -24,12 +28,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
       {/* IMAGE CONTAINER */}
       {singleProduct.img && (
         <div className="relative w-full h-1/2 md:h-[70%]">
-          <Image
-            src={singleProduct.img}
-            alt=""
-            className="object-contain"
-            fill
-          />
+          <Image src={singleProduct.img} alt="" className="object-contain" fill />
         </div>
       )}
       {/* TEXT CONTAINER */}
@@ -39,10 +38,12 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           <DeleteButton id={singleProduct.id} />
         </h1>
         <p>{singleProduct.desc}</p>
+        {/* Render the Price component with the singleProduct data */}
         <Price product={singleProduct} />
       </div>
     </div>
   );
 };
 
+// Export the SingleProductPage component
 export default SingleProductPage;

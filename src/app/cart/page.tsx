@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
+// React component definition
 const CartPage = () => {
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
   const { data: session } = useSession();
@@ -14,6 +15,7 @@ const CartPage = () => {
     useCartStore.persist.rehydrate();
   }, []);
 
+  // Function to handle the checkout process
   const handleCheckout = async () => {
     if (!session) {
       router.push("/login");
@@ -29,6 +31,7 @@ const CartPage = () => {
             userEmail: session.user.email,
           }),
         });
+        // Parse response and navigate to the payment page
         const data =await res.json()
         router.push(`/pay/${data.id}`)
       } catch (err) {
@@ -36,7 +39,7 @@ const CartPage = () => {
       }
     }
   };
-
+  // Render the shopping cart page
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
       {/* PRODUCTS CONTAINER */}

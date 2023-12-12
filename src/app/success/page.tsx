@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
-
+// React component definition
 const SuccessPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -24,7 +24,8 @@ const SuccessPage = () => {
 
     makeRequest();
   }, [payment_intent, router]);
-
+  
+  // Render the success message and redirection notice
   return (
     <>
       <div className="min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-15rem)] flex items-center justify-center text-center text-2xl text-green-700">

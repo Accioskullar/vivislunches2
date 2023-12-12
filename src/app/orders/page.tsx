@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
 
+// React component definition
 const OrdersPage = () => {
   const { data: session, status } = useSession();
 
@@ -51,7 +52,8 @@ const OrdersPage = () => {
   };
 
   if (isLoading || status === "loading") return "Loading...";
-
+  
+  // Render the orders table
   return (
     <div className="p-4 lg:px-20 xl:px-40">
       <table className="w-full border-separate border-spacing-3">

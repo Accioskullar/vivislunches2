@@ -1,7 +1,9 @@
+
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+// Static data for the slides
 const data = [
   {
     id: 1,
@@ -20,9 +22,12 @@ const data = [
   },
 ];
 
+// Slider component
 const Slider = () => {
+  // State to keep track of the current slide
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Automatically switch slides every 4 seconds
   useEffect(() => {
     const interval = setInterval(
       () =>
@@ -32,6 +37,7 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Render the slider component
   return (
     <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-50">
       {/* TEXT CONTAINER */}
@@ -43,6 +49,7 @@ const Slider = () => {
       </div>
       {/* IMAGE CONTAINER */}
       <div className="w-full flex-1 relative">
+        {/* Display the current slide image */}
         <Image
           src={data[currentSlide].image}
           alt=""
@@ -54,4 +61,5 @@ const Slider = () => {
   );
 };
 
+// Export the Slider component
 export default Slider;

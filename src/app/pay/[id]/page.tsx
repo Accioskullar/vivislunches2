@@ -5,10 +5,12 @@ import { Elements } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 
+// Load the Stripe API key
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
+// React component definition
 const PayPage = ({ params }: { params: { id: string } }) => {
   const [clientSecret, setClientSecret] = useState("");
 
@@ -39,7 +41,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
       theme:"stripe"
     }
   }
-
+   // Render the payment form using the CheckoutForm component
   return (
     <div>
       {clientSecret && (

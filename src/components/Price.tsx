@@ -1,21 +1,26 @@
-"use client";
 
+"use client";
 import { ProductType } from "@/types/types";
 import { useCartStore } from "@/utils/store";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+// Price component
 const Price = ({ product }: { product: ProductType }) => {
+  // State to manage total price, quantity, and selected option
   const [total, setTotal] = useState(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
+  // Access addToCart function from the store
   const { addToCart } = useCartStore();
 
-  useEffect(()=>{
-    useCartStore.persist.rehydrate()
-  },[])
+  // Rehydrate the cart store on component mount
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
+  // Update total price based on quantity and selected option
   useEffect(() => {
     if (product.options?.length) {
       setTotal(
@@ -24,7 +29,8 @@ const Price = ({ product }: { product: ProductType }) => {
     }
   }, [quantity, selected, product]);
 
-  const handleCart = ()=>{
+  // Handle adding product to the cart
+  const handleCart = () => {
     addToCart({
       id: product.id,
       title: product.title,
@@ -34,17 +40,21 @@ const Price = ({ product }: { product: ProductType }) => {
         optionTitle: product.options[selected].title,
       }),
       quantity: quantity,
-    })
-    toast.success("The product added to the cart!")
-  }
+    });
+    toast.success("The product added to the cart!");
+  };
 
+  // Render the Price component
   return (
     <div className="flex flex-col gap-4">
+      {/* Display total price */}
       <h2 className="text-2xl font-bold">${total}</h2>
+      
       {/* OPTIONS CONTAINER */}
       <div className="flex gap-4">
+        {/* Display product options buttons */}
         {product.options?.length &&
-          product.options?.map((option, index) => (
+          product.options.map((option, index) => (
             <button
               key={option.title}
               className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md"
@@ -58,25 +68,24 @@ const Price = ({ product }: { product: ProductType }) => {
             </button>
           ))}
       </div>
+      
       {/* QUANTITY AND ADD BUTTON CONTAINER */}
       <div className="flex justify-between items-center">
         {/* QUANTITY */}
         <div className="flex justify-between w-full p-3 ring-1 ring-red-500">
           <span>Quantity</span>
           <div className="flex gap-4 items-center">
-            <button
-              onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
-            >
+            {/* Adjust quantity buttons */}
+            <button onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}>
               {"<"}
             </button>
             <span>{quantity}</span>
-            <button
-              onClick={() => setQuantity((prev) => (prev < 9 ? prev + 1 : 9))}
-            >
+            <button onClick={() => setQuantity((prev) => (prev < 9 ? prev + 1 : 9))}>
               {">"}
             </button>
           </div>
         </div>
+        
         {/* CART BUTTON */}
         <button
           className="uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-500"
@@ -89,4 +98,5 @@ const Price = ({ product }: { product: ProductType }) => {
   );
 };
 
+// Export the Price component
 export default Price;

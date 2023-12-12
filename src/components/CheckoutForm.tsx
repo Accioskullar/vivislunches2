@@ -1,5 +1,5 @@
-"use client";
 
+"use client";
 import {
   LinkAuthenticationElement,
   PaymentElement,
@@ -9,14 +9,18 @@ import {
 import { useEffect, useState } from "react";
 import AddressForm from "./AddressForm";
 
+// CheckoutForm component
 const CheckoutForm = () => {
+  // Get the stripe and elements objects using hooks
   const stripe = useStripe();
   const elements = useElements();
 
+  // State for email, message, and loading status
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Effect to handle payment status
   useEffect(() => {
     if (!stripe) {
       return;
@@ -48,30 +52,25 @@ const CheckoutForm = () => {
     });
   }, [stripe]);
 
+  // Function to handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     setIsLoading(true);
 
+    // Confirm the payment with Stripe
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
         return_url: "http://localhost:3000/success",
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
+    // Handle any errors during payment confirmation
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message || "Something went wrong!");
     } else {
@@ -81,21 +80,30 @@ const CheckoutForm = () => {
     setIsLoading(false);
   };
 
+  // Render the checkout form
   return (
     <form
       id="payment-form"
       onSubmit={handleSubmit}
       className="min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-15rem)] p-4 lg:px-20 xl:px-40 flex flex-col gap-8"
     >
+      {/* Stripe Link Authentication Element */}
       <LinkAuthenticationElement id="link-authentication-element" />
+      {/* Stripe Payment Element */}
       <PaymentElement
         id="payment-element"
         options={{
           layout: "tabs",
         }}
       />
+      {/* Address Form Component */}
       <AddressForm />
-      <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-red-500 text-white p-4 rounded-md w-28">
+      {/* Pay Now Button */}
+      <button
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+        className="bg-red-500 text-white p-4 rounded-md w-28"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
@@ -106,4 +114,5 @@ const CheckoutForm = () => {
   );
 };
 
+// Export the CheckoutForm component
 export default CheckoutForm;
