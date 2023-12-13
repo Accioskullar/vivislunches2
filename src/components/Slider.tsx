@@ -7,17 +7,17 @@ import React, { useEffect, useState } from "react";
 const data = [
   {
     id: 1,
-    title: "always fresh, always hot",
+    title: "Siempre fresco, siempre caliente",
     image: "/slide1.jpg",
   },
   {
     id: 2,
-    title: "we deliver your order anywhere in the Metro area",
+    title: "Entregamos en toda la area metro!",
     image: "/carnefrita.jpg",
   },
   {
     id: 3,
-    title: "the best kind of homemade food",
+    title: "El mejor tipo de comida hecha en casa",
     image: "/slide4.jpg",
   },
 ];
