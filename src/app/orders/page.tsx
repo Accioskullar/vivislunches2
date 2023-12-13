@@ -62,10 +62,10 @@ const OrdersPage = () => {
         <thead>
           <tr className="text-left">
             <th className="hidden md:block">Order ID</th>
-            <th>Date</th>
-            <th>Price</th>
-            <th className="hidden md:block">Products</th>
-            <th>Status</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th className="hidden md:block">Productos</th>
+            <th>Estatus</th>
           </tr>
         </thead>
         <tbody>
