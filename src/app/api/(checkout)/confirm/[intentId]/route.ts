@@ -5,7 +5,7 @@ import { NextResponse, NextRequest } from "next/server";
 // Handling PUT requests for updating an order's status
 // @ts-ignore
 // export const PUT : Request = async ({ params }: { params: { intentId: string } }) => {
-  export const PUT : Request = async (req : NextRequest, { params }: { params: { intentId: string } }) => {
+  export const PUT = async (req : NextRequest, { params }: { params: { intentId: string } }) => {
   // Extracting intentId from request parameters
   const { intentId } = params;
 
