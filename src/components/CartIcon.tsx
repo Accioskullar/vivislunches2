@@ -14,10 +14,10 @@ const CartIcon = () => {
   // Get the totalItems from the cart store using the useCartStore hook
   const { totalItems } = useCartStore();
 
-  // Rehydrate the cart store on component mount and re-renders
-  useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
+  // // Rehydrate the cart store on component mount and re-renders
+  // useEffect(() => {
+  //   useCartStore.persist.rehydrate();
+  // }, []);
 
   // Render the CartIcon component
   return (

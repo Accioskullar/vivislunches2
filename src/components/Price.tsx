@@ -15,10 +15,10 @@ const Price = ({ product }: { product: ProductType }) => {
   // Access addToCart function from the store
   const { addToCart } = useCartStore();
 
-  // Rehydrate the cart store on component mount
-  useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
+  // // Rehydrate the cart store on component mount
+  // useEffect(() => {
+  //   useCartStore.persist.rehydrate();
+  // }, []);
 
   // Update total price based on quantity and selected option
   useEffect(() => {

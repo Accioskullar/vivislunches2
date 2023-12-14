@@ -11,9 +11,9 @@ const CartPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
+  // useEffect(() => {
+  //   useCartStore.persist.rehydrate();
+  // }, []);
 
   // Function to handle the checkout process
   const handleCheckout = async () => {
